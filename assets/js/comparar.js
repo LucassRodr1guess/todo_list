@@ -1,6 +1,13 @@
 const senha = document.getElementById("senha")
 const senha2 = document.getElementsById("senha2")
 
-//function compararSenhas(){
-//    if(senha.value)
-//}
+function comparar(){
+    if(senha.value != senha2.value){
+        senha2.setCustomValidity('As senhas não conferem')
+    }else{
+        senha2.setCustomValidity('')
+    }
+}
+
+senha.onchange = comparar
+senha2.onkeyup = comparar
