@@ -1,5 +1,5 @@
 const senha = document.getElementById("senha")
-const senha2 = document.getElementsById("senha2")
+const senha2 = document.getElementById("senha2")
 
 function comparar(){
     if(senha.value != senha2.value){
