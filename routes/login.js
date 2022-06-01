@@ -21,7 +21,10 @@ module.exports = (app)=>{
         if(!comparar){
             return res.send('Senha incorreta')
         }
+        //buscar os documentos na coleção atividades desse usuário
+        const atividades = require('../models/atividades')
+        var buscar = await atividades.find({usuario:req.body.id})
         //abrir a view atividades e enviar o nome e o id
-        res.render('atividades.ejs',{nome:procurar.nome,id:procurar._id})
+        res.render('atividades.ejs',{nome:procurar.nome,id:procurar._id,dados:buscar})
     })
 }

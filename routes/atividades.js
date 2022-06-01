@@ -16,7 +16,6 @@ module.exports = (app)=>{
             instrucoes:dados.orientacao,
             usuario:dados.id
         }).save()
-
         //buscar todas as atividades desse usuário
         var buscar = await atividades.find({usuario:dados.id})
         //console.log(buscar)
