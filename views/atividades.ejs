@@ -13,16 +13,16 @@
         <h1 class="text-center">Lista de Atividades</h1>
         <h3 class="text-center">Usuário: <%=nome%></h3>
         <div class="row">
-            <div class="col-sm text-center">
+            <div class="col-sm text-center order-2">
                 <h3 class="text-center">Cadastrar </h3>
                 <form action="/atividades" method="post" class="form-control">
                     <input type="hidden" name="id" value="<%=id%>">
                     <input type="hidden" name="nome" value="<%=nome%>">
                 <div class="form-floating">
-                    <input type="date" name="data" id="floatingInput" class = 'form-control' placeholder="Data">
+                    <input type="date" name="data" id="floatingInput" class = 'form-control' placeholder="Data" required> 
                     <label for="floatingInput">Data de Entrega</label>
                 </div>
-                    <div class="class form-floating">
+                    <div class=" class form-floating order-1">
                     <select name="tipo" id="floatingSelect" name="tipo" class="form-control">
                         <option value="0">Selecione...</option>
                         <option value="1">Ac</option>
@@ -54,6 +54,7 @@
             </div>
             <div class="col-md text-center">
                 <h3>Atividade Cadastradas</h3>
+                <h4>Em aberto</h4>
                 <% for (var n = 0; n<dados.length;n++){%>
                 <div class="card">
                     <div class="card-header">Data: <%=dados[n].data.getDate()%>/<%=dados[n].data.getMonth()+1%>/<%=dados[n].data.getFullYear()%></div>
@@ -65,7 +66,45 @@
                     </div>
                     <div class="card-footer">
                         <div class="input-group">
-                            <input type="button" value="Entregue" class="btn btn-success form-control">
+                            <input type="button" value="Entregue" class="btn btn-success form-control" onclick="(window.location.href='/entregue?id=<%=dados[n]._id%>')">
+                            <input type="button" value="Alterar" class="btn btn-warning form-control">
+                            <input type="button" value="Excluir" class="btn btn-danger form-control" onclick="(window.location.href='/excluir?id=<%=dados[n]._id%>')">
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <h4>Entregues</h4>
+                <% for (var n = 0; n<dadose.length;n++){%>
+                <div class="card">
+                    <div class="card-header">Data: <%=dadose[n].data.getDate()%>/<%=dadose[n].data.getMonth()+1%>/<%=dadose[n].data.getFullYear()%></div>
+                    <div class="card-body">
+                        <div class="card-title">Tipo: <%=dadose[n].tipo%></div>
+                        <div class="card-title">Disciplina: <%=dadose[n].disciplina%></div>
+                        <div class="card-subtitle">Entrega: <%=dadose[n].entrega%></div>
+                        <div class="card-text">Orientações: <%=dadose[n].instrucoes%></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="button" value="Entregue" class="btn btn-success form-control" onclick="(window.location.href='/entregue?id=<%=dados[n]._id%>')">
+                            <input type="button" value="Alterar" class="btn btn-warning form-control">
+                            <input type="button" value="Excluir" class="btn btn-danger form-control" onclick="(window.location.href='/excluir?id=<%=dados[n]._id%>')">
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <h4>Excluir</h4>
+                <% for (var n = 0; n<dadosx.length;n++){%>
+                <div class="card">
+                    <div class="card-header">Data: <%=dadosx[n].data.getDate()%>/<%=dadosx[n].data.getMonth()+1%>/<%=dadosx[n].data.getFullYear()%></div>
+                    <div class="card-body">
+                        <div class="card-title">Tipo: <%=dadosx[n].tipo%></div>
+                        <div class="card-title">Disciplina: <%=dadosx[n].disciplina%></div>
+                        <div class="card-subtitle">Entrega: <%=dadosx[n].entrega%></div>
+                        <div class="card-text">Orientações: <%=dadosx[n].instrucoes%></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="button" value="Entregue" class="btn btn-success form-control" onclick="(window.location.href='/entregue?id=<%=dados[n]._id%>')">
                             <input type="button" value="Alterar" class="btn btn-warning form-control">
                             <input type="button" value="Excluir" class="btn btn-danger form-control" onclick="(window.location.href='/excluir?id=<%=dados[n]._id%>')">
                         </div>
