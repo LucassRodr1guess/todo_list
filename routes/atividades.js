@@ -71,7 +71,16 @@ app.get("/entregue",async(req,res)=>{
             //redirecionar para a rota atividades
             res.redirect('/atividades?id='+desfazer.usuario)
         })
+
+        //criar a rota para renderizar a view alterar
+        app.get('/alterar',async(req,res)=>{
+            //capturar o id(atividade) da barra de endereço
+            var id = req.query.id
+            //buscar a atividade que será alterada
+            var alterar = await atividades.findOne({_id:id})
+            //buscar o nome na collection usuarios
+            var user = await usuarios.findOne({_id:alterar.usuario})  
+            //abrir a view alterar
+            res.render('alterar.ejs',{nome:user.nome,id:user._id,dados:alterar})
+        })
 }
-
-
-
