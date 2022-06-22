@@ -83,4 +83,24 @@ app.get("/entregue",async(req,res)=>{
             //abrir a view alterar
             res.render('alterar.ejs',{nome:user.nome,id:user._id,dados:alterar})
         })
+
+        //criar a rota para gravar as alterações na atividade
+        app.post('/alterar',async(req,res)=>{
+            //qual atividade será atualizada?
+            var id_a = req.query.id
+            //quais são as informações digitadas?
+            var infos = req.body
+            console.log(infos)
+            //gravar as alterações na collection atividades
+            var gravar = await atividades.findOneAndUpdate(
+                {_id:infos.id_a},
+                {data:infos.data,
+                tipo:infos.tipo,
+                disciplina:infos.disciplina,
+                entrega:infos.entrega,
+                instrucoes:infos.orientacao
+                }
+            )
+            res.redirect('/atividades?id='+infos.id)
+        })
 }

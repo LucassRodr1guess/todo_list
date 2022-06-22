@@ -23,6 +23,7 @@
                 <form action="/alterar" method="post" class="form-control">
                     <input type="hidden" name="id" value="<%=id%>">
                     <input type="hidden" name="nome" value="<%=nome%>">
+                    <input type="hidden" name="id_a" value="<%=dados._id%>">
                     <div class="form-floating">               
                         <input type="date" name="data" id="floatingSelect" class='form-control' placeholder="Data" value="<%=dados.data.toISOString().slice(0,10)%>" required>
                         <label for="floatingInput">Data de Entrega:</label>
@@ -54,7 +55,9 @@
                     <input type="radio" name="entrega" class="form-check-input" id="" value="formulario" <%=dados.entrega=="formulario"?"checked":""%>>Forms<br>
                     <label for="" class="form-control">Orientações:</label>
                     <textarea name="orientacao" id="" cols="30" rows="10" class="form-control"><%=dados.instrucoes%></textarea>
+                    <input type="button" value="Cancelar" class="btn btn-info" onclick="history.back()">
                     <input type="submit" value="Alterar" class="btn btn-danger">
+                   
                 </form>
             </div>
 
